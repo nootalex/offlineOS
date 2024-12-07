@@ -1,3 +1,5 @@
+# UNFINISHED!!
+
 # offlineOS
 ## think of it something like, uh... windows 96?
 - - -
