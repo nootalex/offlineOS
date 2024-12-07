@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>offlineOS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tiny5&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('wallpapers/defaultwallpaper.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            font-family: "Tiny5", sans-serif;
+            color: white;
+            overflow: hidden;
+            position: relative;
+            text-shadow: 
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000;
+				cursor: url('cursors/normal.png')
+        }
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 28px;
+            background: linear-gradient(to right, #e04304, #7004bd);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+            z-index: 100;
+            color: white;
+			cursor: url('cursors/normal.png'), auto;
+        }
+        .taskbar span {
+            font-family: "Tiny5", sans-serif;
+            font-size: 1.3rem;
+            text-shadow: 
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000;
+				cursor: url('cursors/point.png'), auto;
+        }
+		.cursorthing {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+            z-index: -99;
+            color: white;
+			cursor: url('cursors/normal.png'), auto;
+        }
+		.apps-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px;
+			cursor: url('cursors/normal.png')
+        }
+        .app {
+            text-align: left;
+            margin: 10px;
+            cursor: pointer;
+            flex: 0 0 90px;
+			cursor: url('cursors/point.png'), auto;
+        }
+        .app img {
+            width: 60px;
+            height: 60px;
+            display: block;
+			cursor: url('cursors/point.png'), auto;
+        }
+        .app small {
+            font-size: 12px;
+			    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000; 
+	cursor: url('cursors/point.png'), auto;
+        }
+		.iframe {   
+	    cursor: url('cursors/normal.png'), auto;
+		position: absolute;
+            top: 28px;
+            left: 0;
+            width: 100vw;
+            height: calc(100vh - 28px);
+            border: none;
+            display: none;
+            z-index: 10;
+		}
+		.iframe-bar {
+		cursor: url('cursors/normal.png'), auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 25px;
+            background: linear-gradient(to left, #e04304, #7004bd);
+            display: none;
+            z-index: 15;
+            color: white;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;	
+        }
+		.iframe-bar img {
+            width: 24px;
+            height: 24px;
+        cursor: url('cursors/point.png'), auto;
+        }
+    </style>
+</head>
+<body>
+<div class="taskbar">
+    <span><i>start</i></span>
+</div>
+<div class="cursorthing">
+<div class="apps-container">
+<div class="app" onclick="openGame('apps/testmessage.html')">
+            <img src="icons/unknown.png">
+            <small>Test Message</small>
+        </div>
+		</div>
+</div>
+</div>
+<iframe id="appframe"></iframe>
+    <div class="iframe-bar">
+        <span id="iframe-url">Game URL</span>
+        <div>
+            <img src="icons/minimize.png" onclick="minimizeGame()">
+            <img src="icons/close.png" onclick="closeGame()">
+			<img src="icons/nothing.png">
+        </div>
+    </div>
+<script>
+        const iframe = document.getElementById('appframe');
+        const iframeBar = document.querySelector('.iframe-bar');
+        const iframeUrl = document.getElementById('iframe-url');
+		let minimized = false;
+
+        window.onload = () => {
+            iframe.style.display = 'none';
+            iframeBar.style.display = 'none';
+        };
+
+        function openGame(url) {
+            iframe.src = url;
+            iframe.style.display = 'block';
+            iframeBar.style.display = 'flex';
+            iframeUrl.textContent = url;
+        }
+		
+		function closeGame() {
+            iframe.style.display = 'none';
+            iframeBar.style.display = 'none';
+            iframe.src = '';
+            minimized = false;
+        }
+
+        function minimizeGame() {
+            iframe.style.display = 'none';
+            iframeBar.style.display = 'none';
+            minimized = true;
+        }
+
+        function restoreGame() {
+            if (minimized) {
+                iframe.style.display = 'block';
+                iframeBar.style.display = 'flex';
+                minimized = false;
+            }
+        }
+</script>
+</body>
+</html>
