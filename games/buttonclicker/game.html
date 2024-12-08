@@ -39,7 +39,7 @@
             font-size: 35px;
             cursor: url('../../cursors/text.png'), auto;
             color: white;
-			text-shadow: 
+            text-shadow: 
                 -1px -1px 0 #000,
                 1px -1px 0 #000,
                 -1px 1px 0 #000,
@@ -48,7 +48,12 @@
 
         #clickbutton {
             width: 200px;
+            transition: transform 0.1s ease;
             cursor: url('../../cursors/point.png'), auto;
+        }
+
+        #clickbutton:active {
+            transform: scale(0.8);
         }
 
         #score, #rebirthscore {
@@ -57,7 +62,7 @@
             margin: 20px 0;
             cursor: url('../../cursors/text.png'), auto;
             color: white;
-			text-shadow: 
+            text-shadow: 
                 -1px -1px 0 #000,
                 1px -1px 0 #000,
                 -1px 1px 0 #000,
@@ -68,7 +73,7 @@
             font-family: "Tiny5", sans-serif;
             padding: 10px 20px;
             width: 250px;
-			height: 60px;
+            height: 60px;
             font-size: 18px;
             cursor: pointer;
             border: none;
@@ -76,7 +81,7 @@
             background-color: red;
             color: white;
             cursor: url('../../cursors/point.png'), auto;
-			text-shadow: 
+            text-shadow: 
                 -1px -1px 0 #000,
                 1px -1px 0 #000,
                 -1px 1px 0 #000,
@@ -111,6 +116,18 @@
     const upgradeButton = document.getElementById("upgrade");
     const rebirthButton = document.getElementById("rebirth");
     const rebirthScoreElement = document.getElementById("rebirthscore");
+
+    buttonElement.addEventListener("mousedown", () => {
+        buttonElement.style.transform = "scale(0.8)";
+    });
+
+    buttonElement.addEventListener("mouseup", () => {
+        buttonElement.style.transform = "scale(1)";
+    });
+
+    buttonElement.addEventListener("mouseout", () => {
+        buttonElement.style.transform = "scale(1)";
+    });
 
     buttonElement.addEventListener("click", () => {
         clicked += clickedPerClick * multiplier;
