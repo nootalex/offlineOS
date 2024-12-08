@@ -7,13 +7,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Tiny5&display=swap" rel="stylesheet">
     <style>
         body {
+            background-image: url('wallpaper.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             font-family: "Tiny5", sans-serif;
             text-align: center;
             margin-top: 100px;
             background-color: #f3f3f3;
             cursor: url('../../cursors/normal.png'), auto;
         }
-        
+
         .cursorthing {
             position: fixed;
             bottom: 0;
@@ -26,14 +30,20 @@
             padding: 0 10px;
             z-index: -99;
             color: white;
-			cursor: url('../../cursors/normal.png'), auto;
+            cursor: url('../../cursors/normal.png'), auto;
         }
-
 
         .text {
             font-family: "Tiny5", sans-serif;
             text-align: center;
-            font-size: 25px;
+            font-size: 35px;
+            cursor: url('../../cursors/text.png'), auto;
+            color: white;
+			text-shadow: 
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000;
         }
 
         #clickbutton {
@@ -41,23 +51,36 @@
             cursor: url('../../cursors/point.png'), auto;
         }
 
-        #score {
+        #score, #rebirthscore {
             font-family: "Tiny5", sans-serif;
-            font-size: 24px;
+            font-size: 22px;
             margin: 20px 0;
             cursor: url('../../cursors/text.png'), auto;
+            color: white;
+			text-shadow: 
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000;
         }
 
         button {
             font-family: "Tiny5", sans-serif;
             padding: 10px 20px;
+            width: 250px;
+			height: 60px;
             font-size: 18px;
             cursor: pointer;
             border: none;
             border-radius: 2px;
-            background-color: #4CAF50;
+            background-color: red;
             color: white;
             cursor: url('../../cursors/point.png'), auto;
+			text-shadow: 
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000;
         }
 
         button:disabled {
@@ -73,20 +96,27 @@
 </div>
 <img id="clickbutton" src="button.png" alt="button">
 <div id="score">clicked: 0</div>
+<div id="rebirthscore">rebirth: 0</div>
 <button id="upgrade" disabled>upgrade clicks per click by 1 (cost: 10 clicks)</button>
-
+<button id="rebirth" disabled>rebirth (cost: 1000000 clicks)</button>
 <script>
     let clicked = 0;
     let clickedPerClick = 1;
+    let rebirths = 0;
+    let multiplier = 1;
+    let rebirthCost = 1000000;
 
     const buttonElement = document.getElementById("clickbutton");
     const scoreElement = document.getElementById("score");
     const upgradeButton = document.getElementById("upgrade");
+    const rebirthButton = document.getElementById("rebirth");
+    const rebirthScoreElement = document.getElementById("rebirthscore");
 
     buttonElement.addEventListener("click", () => {
-        clicked += clickedPerClick;
+        clicked += clickedPerClick * multiplier;
         scoreElement.textContent = `clicked: ${clicked}`;
         if (clicked >= 10) upgradeButton.disabled = false;
+        if (clicked >= rebirthCost) rebirthButton.disabled = false;
     });
 
     upgradeButton.addEventListener("click", () => {
@@ -95,6 +125,21 @@
             clickedPerClick++;
             scoreElement.textContent = `clicked: ${clicked}`;
             upgradeButton.disabled = clicked < 10;
+        }
+    });
+
+    rebirthButton.addEventListener("click", () => {
+        if (clicked >= rebirthCost) {
+            clicked = 0;
+            clickedPerClick = 1;
+            rebirths++;
+            multiplier++;
+            rebirthCost *= 2;
+            rebirthScoreElement.textContent = `rebirth: ${rebirths}`;
+            scoreElement.textContent = `clicked: ${clicked}`;
+            rebirthButton.textContent = `rebirth (cost: ${rebirthCost} clicks)`;
+            upgradeButton.disabled = true;
+            rebirthButton.disabled = true;
         }
     });
 </script>
