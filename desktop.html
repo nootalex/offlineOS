@@ -52,7 +52,6 @@
             left: 0;
             width: 100%;
             height: 100%;
-            display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 10px;
@@ -91,10 +90,10 @@
 		.iframe {   
 	    cursor: url('cursors/normal.png'), auto;
 		position: absolute;
-            top: 28px;
+            top: 25px;
             left: 0;
             width: 100vw;
-            height: calc(100vh - 28px);
+            height: calc(100vh - 25px);
             border: none;
             display: none;
             z-index: 10;
@@ -133,10 +132,18 @@
             <img src="icons/unknown.png">
             <small>Test Message</small>
         </div>
+		<div class="app" onclick="openGame('games/walk/game.html')">
+            <img src="icons/walk.png">
+            <small>walking simulator v0.2</small>
+        </div>
+		<div class="app" onclick="openGame('games/walkscratch/game.html')">
+            <img src="icons/walk.png">
+            <small>walking simulator [SCRATCH EDITION]</small>
+        </div>
 		</div>
 </div>
 </div>
-<iframe id="appframe"></iframe>
+<iframe id="appframe" style="top: 25px; height: calc(100vh - 32px); width: 100vw;"></iframe>
     <div class="iframe-bar">
         <span id="iframe-url">Game URL</span>
         <div>
