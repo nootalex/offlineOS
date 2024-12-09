@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>offlineOS</title>
+    <title>offlineOS</title>
     <link href="https://fonts.googleapis.com/css2?family=Tiny5&display=swap" rel="stylesheet">
     <style>
         body {
@@ -19,8 +19,9 @@
                 1px -1px 0 #000,
                 -1px 1px 0 #000,
                 1px 1px 0 #000;
-				cursor: url('cursors/normal.png')
+            cursor: url('cursors/normal.png'), auto;
         }
+
         .taskbar {
             position: fixed;
             bottom: 0;
@@ -34,17 +35,19 @@
             padding: 0 10px;
             z-index: 100;
             color: white;
-			cursor: url('cursors/normal.png'), auto;
         }
+
         .taskbar .start {
             display: flex;
             align-items: center;
         }
+
         .taskbar .start img {
             height: 28px;
             width: 100px;
             cursor: url('cursors/point.png'), auto;
         }
+
         .taskbar .time {
             font-family: "Tiny5", sans-serif;
             font-size: 1.3rem;
@@ -54,7 +57,60 @@
                 -1px 1px 0 #000,
                 1px 1px 0 #000;
         }
-		.cursorthing {
+
+        .start-menu {
+            position: absolute;
+            top: 695px;
+            left: 10px;
+            display: none;
+            background-color: white;
+            border: 2px solid #e04304;
+            padding: 10px;
+            z-index: 200;
+            width: 170px;
+            height: 200px;
+            color: black;
+            font-size: 14px;
+			background-color: red;
+        }
+
+        .start-menu .title {
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-align: left;
+            color: white;
+			cursor: url('cursors/text.png'), auto;
+			font-family: "Tiny5", sans-serif;
+        }
+
+        .start-menu .button {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            color: white;
+            padding: 12px;
+            margin: 5px 0;
+            border: none;
+            cursor: url('cursors/normal.png'), auto;
+            width: 100%;
+            font-size: 14px;
+			background-color: darkred;
+			font-family: "Tiny5", sans-serif;
+        }
+
+        .start-menu .button img {
+            height: 16px;
+            width: 16px;
+            margin-right: 10px;
+        }
+
+        .start-menu .button:hover {
+            background-color: white;
+			color: black;
+            cursor: url('cursors/point.png'), auto;
+        }
+
+        .cursorthing {
             position: fixed;
             bottom: 0;
             left: 0;
@@ -65,39 +121,44 @@
             padding: 0 10px;
             z-index: -99;
             color: white;
-			cursor: url('cursors/normal.png'), auto;
+            cursor: url('cursors/normal.png'), auto;
         }
-		.apps-container {
+
+        .apps-container {
             display: flex;
             flex-wrap: wrap;
             margin: 20px;
-			cursor: url('cursors/normal.png')
+            cursor: url('cursors/normal.png')
         }
+
         .app {
             text-align: left;
             margin: 10px;
             cursor: pointer;
             flex: 0 0 90px;
-			cursor: url('cursors/point.png'), auto;
+            cursor: url('cursors/point.png'), auto;
         }
+
         .app img {
             width: 60px;
             height: 60px;
             display: block;
-			cursor: url('cursors/point.png'), auto;
+            cursor: url('cursors/point.png'), auto;
         }
+
         .app small {
             font-size: 12px;
-			    text-shadow:
-    -1px -1px 0 #000,
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-    1px 1px 0 #000; 
-	cursor: url('cursors/point.png'), auto;
+            text-shadow:
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000; 
+            cursor: url('cursors/point.png'), auto;
         }
-		.iframe {   
-	    cursor: url('cursors/normal.png'), auto;
-		position: absolute;
+
+        .iframe {   
+            cursor: url('cursors/normal.png'), auto;
+            position: absolute;
             top: 25px;
             left: 0;
             width: 100vw;
@@ -105,9 +166,10 @@
             border: none;
             display: none;
             z-index: 10;
-		}
-		.iframe-bar {
-		cursor: url('cursors/normal.png'), auto;
+        }
+
+        .iframe-bar {
+            cursor: url('cursors/normal.png'), auto;
             position: absolute;
             top: 0;
             left: 0;
@@ -121,64 +183,135 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 10px;	
+            padding: 0 10px;  
         }
-		.iframe-bar img {
+
+        .iframe-bar img {
             width: 24px;
             height: 24px;
-        cursor: url('cursors/point.png'), auto;
+            cursor: url('cursors/point.png'), auto;
+        }
+
+        .wallpaper-window {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(to top, #e04304, #7004bd);
+            z-index: 300;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+			cursor: url('cursors/normal.png'), auto;
+        }
+
+        .wallpaper-item {
+            margin: 10px;
+            cursor: url('cursors/point.png'), auto;
+        }
+
+        .wallpaper-item img {
+            width: 240px;
+            height: 120px;
+            border: 2px solid white;
+        }
+
+        .wallpaper-item p {
+            color: white;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .close-wallpaper-window {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-<div class="taskbar">
-    <div class="start">
-        <img src="icons/start.png" alt="Start Button"  onclick="restoreGame()">
+    <div class="taskbar">
+        <div class="start">
+            <img src="icons/start.png" onclick="toggleStartMenu()">
+        </div>
+        <div class="time" id="local-time">time</div>
     </div>
-    <div class="time" id="local-time">00:00 </div>
-</div>
-<div class="cursorthing">
-<div class="apps-container">
-<div class="app" onclick="openGame('apps/testmessage.html')">
-            <img src="icons/unknowntxt.png">
-            <small>test message</small>
+
+    <div class="start-menu" id="start-menu">
+        <div class="title">start</div>
+        <button class="button" onclick="showWallpaperWindow()">
+            <img src="icons/wallpapers.png">
+            change wallpaper
+        </button>
+        <button class="button" onclick="restoreGame()">
+            <img src="icons/restoregame.png">
+            restore game
+        </button>
+        <button class="button" onclick="restart()">
+            <img src="icons/restart.png">
+            restart
+        </button>
+    </div>
+
+    <div class="cursorthing">
+        <div class="apps-container">
+            <div class="app" onclick="openGame('apps/testmessage.html')">
+                <img src="icons/unknowntxt.png">
+                <small>test message</small>
+            </div>
+            <div class="app" onclick="openGame('games/walk/game.html')">
+                <img src="icons/walk.png">
+                <small>walking simulator v0.26</small>
+            </div>
+            <div class="app" onclick="openGame('games/walkscratch/game.html')">
+                <img src="icons/walkscratch.png">
+                <small>walking simulator [SCRATCH EDITION]</small>
+            </div>
+            <div class="app" onclick="openGame('games/buttonclicker/game.html')">
+                <img src="icons/buttonclicker.png">
+                <small>button clicker v0.18</small>
+            </div>
         </div>
-		<div class="app" onclick="openGame('games/walk/game.html')">
-            <img src="icons/walk.png">
-            <small>walking simulator v0.26</small>
-        </div>
-		<div class="app" onclick="openGame('games/walkscratch/game.html')">
-            <img src="icons/walkscratch.png">
-            <small>walking simulator [SCRATCH EDITION]</small>
-        </div>
-		<div class="app" onclick="openGame('games/buttonclicker/game.html')">
-            <img src="icons/buttonclicker.png">
-            <small>button clicker v0.18</small>
-        </div>
-		</div>
-</div>
-</div>
-<iframe id="appframe" style="top: 25px; height: calc(100vh - 32px); width: 100vw;"></iframe>
+    </div>
+
+    <iframe id="appframe" style="top: 25px; height: calc(100vh - 32px); width: 100vw;"></iframe>
     <div class="iframe-bar">
-        <span id="iframe-url">you have quite literally nothing open rn</span>
+        <span id="iframe-url">url</span>
         <div>
             <img src="icons/minimize.png" onclick="minimizeGame()">
             <img src="icons/close.png" onclick="closeGame()">
-			<img src="icons/nothing.png">
+            <img src="icons/nothing.png">
         </div>
     </div>
-<script>
+
+    <div class="wallpaper-window" id="wallpaper-window">
+        <div class="close-wallpaper-window" onclick="closeWallpaperWindow()">
+            <img src="icons/close.png">
+        </div>
+        <div id="wallpapers-container"></div>
+    </div>
+
+    <script>
         const iframe = document.getElementById('appframe');
         const iframeBar = document.querySelector('.iframe-bar');
         const iframeUrl = document.getElementById('iframe-url');
         const timeDisplay = document.getElementById('local-time');
-		let minimized = false;
+        const startMenu = document.getElementById('start-menu');
+        const wallpaperWindow = document.getElementById('wallpaper-window');
+        const wallpapersContainer = document.getElementById('wallpapers-container');
+        let minimized = false;
 
         window.onload = () => {
             iframe.style.display = 'none';
-    iframeBar.style.display = 'none';
-    updateTime();
-    setInterval(updateTime, 100);
+            iframeBar.style.display = 'none';
+            updateTime();
+            setInterval(updateTime, 100);
+            loadWallpapers('wallpapers'); // Specify your wallpaper directory
         };
 
         function openGame(url) {
@@ -188,8 +321,8 @@
             iframeUrl.textContent = url;
             minimized = false;
         }
-		
-		function closeGame() {
+
+        function closeGame() {
             iframe.style.display = 'none';
             iframeBar.style.display = 'none';
             iframe.src = '';
@@ -207,9 +340,11 @@
         }
 
         function restoreGame() {
-            iframe.style.display = 'block';
-            iframeBar.style.display = 'flex';
-            minimized = false;
+            if (minimized) {
+                iframe.style.display = 'block';
+                iframeBar.style.display = 'flex';
+                minimized = false;
+            }
         }
 
         function updateTime() {
@@ -218,6 +353,44 @@
             const minutes = String(now.getMinutes()).padStart(2, '0');
             timeDisplay.textContent = hours + ":" + minutes + "||";
         }
-</script>
+
+        function toggleStartMenu() {
+            startMenu.style.display = (startMenu.style.display === 'block') ? 'none' : 'block';
+        }
+
+        function restart() {
+            window.location.href = 'desktop.html';
+        }
+
+        function showWallpaperWindow() {
+            wallpaperWindow.style.display = 'flex';
+        }
+
+        function closeWallpaperWindow() {
+            wallpaperWindow.style.display = 'none';
+        }
+
+        function loadWallpapers(directory) {
+            const wallpapers = [
+                { name: 'default wallpaper', path: `wallpapers/defaultwallpaper.png`},
+                { name: 'old wallpaper', path: `wallpapers/oldwallpaper.png` },
+            ];
+
+            wallpapers.forEach(wallpaper => {
+                const item = document.createElement('div');
+                item.classList.add('wallpaper-item');
+                item.innerHTML = `
+                    <img src="${wallpaper.path}" onclick="applyWallpaper('${wallpaper.path}')">
+                    <p>${wallpaper.name}</p>
+                `;
+                wallpapersContainer.appendChild(item);
+            });
+        }
+
+        function applyWallpaper(path) {
+            document.body.style.backgroundImage = `url('${path}')`;
+            closeWallpaperWindow();
+        }
+    </script>
 </body>
 </html>
