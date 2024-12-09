@@ -201,9 +201,6 @@
             background: linear-gradient(to top, #e04304, #7004bd);
             z-index: 300;
             display: none;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
 			cursor: url('cursors/normal.png'), auto;
         }
 
@@ -213,8 +210,8 @@
         }
 
         .wallpaper-item img {
-            width: 240px;
-            height: 120px;
+            width: 120px;
+            height: 60px;
             border: 2px solid white;
         }
 
@@ -230,7 +227,7 @@
             right: 10px;
             width: 24px;
             height: 24px;
-            cursor: pointer;
+            cursor: url('cursors/point.png'), auto;
         }
     </style>
 </head>
@@ -270,7 +267,7 @@
             </div>
             <div class="app" onclick="openGame('games/walkscratch/game.html')">
                 <img src="icons/walkscratch.png">
-                <small>walking simulator [SCRATCH EDITION]</small>
+                <small>walking simulator: scratch edition</small>
             </div>
             <div class="app" onclick="openGame('games/buttonclicker/game.html')">
                 <img src="icons/buttonclicker.png">
@@ -311,7 +308,7 @@
             iframeBar.style.display = 'none';
             updateTime();
             setInterval(updateTime, 100);
-            loadWallpapers('wallpapers'); // Specify your wallpaper directory
+            loadWallpapers('wallpapers');
         };
 
         function openGame(url) {
@@ -373,7 +370,11 @@
         function loadWallpapers(directory) {
             const wallpapers = [
                 { name: 'default wallpaper', path: `wallpapers/defaultwallpaper.png`},
-                { name: 'old wallpaper', path: `wallpapers/oldwallpaper.png` },
+                { name: 'old wallpaper', path: `wallpapers/oldwallpaper.png`},
+				{ name: 'boreds wallpaper [requested]', path: `wallpapers/boredwallpaper.png`},
+				{ name: 'winter wallpaper', path: `wallpapers/winter.png`},
+				{ name: 'day wallpaper', path: `wallpapers/day.png`},
+				{ name: 'night wallpaper', path: `wallpapers/night.png`},
             ];
 
             wallpapers.forEach(wallpaper => {
