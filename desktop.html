@@ -59,20 +59,21 @@
         }
 
         .start-menu {
-            position: absolute;
-            top: 695px;
-            left: 10px;
-            display: none;
-            background-color: white;
-            border: 2px solid #e04304;
-            padding: 10px;
-            z-index: 200;
-            width: 170px;
-            height: 200px;
-            color: black;
-            font-size: 14px;
-			background-color: red;
-        }
+    position: absolute;
+    top: calc(100vh - 52px - 200px);
+    left: 10px;
+    display: none;
+    background-color: white;
+    border: 2px solid #e04304;
+    padding: 10px;
+    z-index: 200;
+    width: 170px;
+    height: 200px;
+    color: black;
+    font-size: 14px;
+    background-color: red;
+}
+
 
         .start-menu .title {
             font-size: 32px;
@@ -272,6 +273,14 @@
             <div class="app" onclick="openGame('games/buttonclicker/game.html')">
                 <img src="icons/buttonclicker.png">
                 <small>button clicker v0.18</small>
+            </div>
+			<div class="app" onclick="openGame('apps/notepad.html')">
+                <img src="icons/notepad.png">
+                <small>notepad</small>
+            </div>
+			<div class="app" onclick="openGame('apps/paint.html')">
+                <img src="icons/paint.png">
+                <small>paint</small>
             </div>
         </div>
     </div>
