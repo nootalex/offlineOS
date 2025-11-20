@@ -1,7 +1,5 @@
-# UNFINISHED!!
-
 # offlineOS
-## think of it something like, uh... windows 96?
+## [ in-developemnt, nothing is final ]
 - - -
-think of this like one of these windows-styled websites (i do NOT own windows!) like windows 96 or 93 (i don't own these either), but it has games (my only) and ALMOST the entire thing can be used offilne!
+little thing i'm working on, inspired by windows 96 and similiar (i do not own these), also you can run most of this website offline
 - - -
